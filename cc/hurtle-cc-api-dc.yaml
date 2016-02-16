@@ -1,0 +1,69 @@
+apiVersion: v1
+kind: DeploymentConfig
+metadata:
+  annotations:
+    openshift.io/generatedby: hurtle.it
+  labels:
+    app: hurtle-cc-api
+  name: hurtle-cc-api
+  namespace: test
+spec:
+  replicas: 1
+  selector:
+    deploymentconfig: hurtle-cc-api
+  strategy:
+    resources: {}
+    rollingParams:
+      intervalSeconds: 1
+      timeoutSeconds: 600
+      updatePeriodSeconds: 1
+    type: Rolling
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: hurtle-cc-api
+        deploymentconfig: hurtle-cc-api
+    spec:
+      containers:
+      - env:
+        - name: USERNAME
+          value: demo
+        - name: PASSWORD
+          value: ${PASSWORD}
+        - name: VERSION
+          value: "29"
+        - name: SECRET
+          value: a24b62cef52aef3a
+        - name: SELF_REBUILD_URL
+          value: https://opsv3.cloudcomplab.ch:8443/oapi/v1/namespaces/test/buildconfigs/hurtle-cc-api/webhooks/a24b62cef52aef3a/generic
+        - name: GLUE_NAME
+          value: OpenShift3
+        - name: DOMAIN
+          value: .apps.opsv3.cloudcomplab.ch
+        - name: NAMESPACE
+          value: test
+        - name: URI
+          value: https://opsv3.cloudcomplab.ch:8443
+        image: 172.30.33.47:5000/test/hurtle-cc-api@sha256:3297fdb425c973f023c891519358afa99065819d196a70ebbd5264ac2faf58c9
+        imagePullPolicy: Always
+        name: hurtle-cc-api
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        - containerPort: 8081
+          protocol: TCP
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+  triggers:
+  - type: ConfigChange
+  - imageChangeParams:
+      automatic: true
+      containerNames:
+      - hurtle-cc-api
+      from:
+        kind: ImageStreamTag
+        name: hurtle-cc-api:latest
+    type: ImageChange

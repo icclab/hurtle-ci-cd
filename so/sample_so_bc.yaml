@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: BuildConfig
+metadata:
+  annotations:
+    openshift.io/generatedby: hurtle.it
+  labels:
+    app: sample-so
+  name: sample-so
+  namespace: test
+spec:
+  output:
+    to:
+      kind: ImageStreamTag
+      name: sample-so:latest
+  resources: {}
+  source:
+    git:
+      ref: master
+      uri: https://github.com/icclab/hurtle_sample_so.git
+    type: Git
+  strategy:
+    sourceStrategy:
+      from:
+        kind: ImageStreamTag
+        name: python27updated:latest
+        namespace: openshift
+    type: Source
+  triggers:
+  - generic:
+      secret: a24b62cef52aef3a
+    type: Generic
+  - type: ConfigChange
+  - github:
+      secret: ea5eaa349ad2210f
+    type: GitHub

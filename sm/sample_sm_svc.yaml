@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    openshift.io/generatedby: hurtle.it
+  labels:
+    app: sample-sm
+  name: sample-sm
+  namespace: test
+spec:
+  ports:
+  - name: api
+    nodePort: 0
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    deploymentconfig: sample-sm
+  sessionAffinity: None
+  type: ClusterIP

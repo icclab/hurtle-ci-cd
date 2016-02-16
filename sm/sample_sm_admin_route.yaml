@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Route
+metadata:
+  annotations:
+    openshift.io/generatedby: hurtle.it
+  labels:
+    app: sample-sm
+  name: sample-sm-admin
+  namespace: test
+spec:
+  host: sample-sm-admin.test.apps.opsv3.cloudcomplab.ch
+  to:
+    kind: Service
+    name: sample-sm-admin
+status: {}

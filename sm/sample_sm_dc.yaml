@@ -1,0 +1,71 @@
+apiVersion: v1
+kind: DeploymentConfig
+metadata:
+  annotations:
+    openshift.io/generatedby: hurtle.it
+  labels:
+    app: sample-sm
+  name: sample-sm
+  namespace: test
+spec:
+  replicas: 1
+  selector:
+    deploymentconfig: sample-sm
+  strategy:
+    resources: {}
+    rollingParams:
+      intervalSeconds: 1
+      timeoutSeconds: 600
+      updatePeriodSeconds: 1
+    type: Rolling
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        sm: sample-sm
+        app: sample-sm
+        deploymentconfig: sample-sm
+    spec:
+      containers:
+      - env:
+        - name: BUNDLE_LOC
+          value: sample-so
+        - name: SM_NAME
+          value: sample-sm
+        - name: SM_CONFIG_PATH
+          value: /opt/app-root/src/etc/sm_ops3.cfg
+        - name: DB_USER
+          value: admin
+        - name: DB_PASSWORD
+          value: hurtle
+        - name: CC_USER
+          value: test
+        - name: CC_PASSWORD
+          value: ${PASSWORD}
+        - name: CC_URL
+          value: http://hurtle-cc-api.test.apps.opsv3.cloudcomplab.ch/
+        - name: CC_ADMIN_URL
+          value: http://hurtle-cc-api-admin.test.apps.opsv3.cloudcomplab.ch/
+        image: 172.30.33.47:5000/test/sample-sm:latest
+        imagePullPolicy: Always
+        name: sample-sm
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        - containerPort: 8081
+          protocol: TCP
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+  triggers:
+  - type: ConfigChange
+  - imageChangeParams:
+      automatic: true
+      containerNames:
+      - sample-sm
+      from:
+        kind: ImageStreamTag
+        name: sample-sm:latest
+    type: ImageChange
+status:

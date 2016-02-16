@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: BuildConfig
+metadata:
+  annotations:
+    openshift.io/generatedby: hurtle.it
+  labels:
+    app: hurtle-cc-api
+  name: hurtle-cc-api
+  namespace: test
+spec:
+  output:
+    to:
+      kind: ImageStreamTag
+      name: hurtle-cc-api:latest
+  resources: {}
+  source:
+    git:
+      ref: master
+      uri: https://github.com/icclab/hurtle_cc_api
+    type: Git
+  strategy:
+    sourceStrategy:
+      from:
+        kind: ImageStreamTag
+        name: python27:latest
+        namespace: openshift
+    type: Source
+  triggers:
+  - generic:
+      secret: a24b62cef52aef3a
+    type: Generic
+  - type: ConfigChange
+  - github:
+      secret: ea5eaa349ad2210f
+    type: GitHub
+  - imageChange:
+      lastTriggeredImageID: openshift/python-27-centos7@sha256:dc5e884c8f5f0a836f06fc8104131c4a013a9ea9dbac002d4121fdd5e353fe03
+    type: ImageChange

@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Route
+metadata:
+  annotations:
+    openshift.io/generatedby: hurtle.it
+  labels:
+    app: hurtle-cc-api
+  name: hurtle-cc-api-admin
+  namespace: test
+spec:
+  host: hurtle-cc-api-admin.test.apps.opsv3.cloudcomplab.ch
+  to:
+    kind: Service
+    name: hurtle-cc-api-admin
+status: {}
