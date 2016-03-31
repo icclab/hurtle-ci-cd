@@ -5,11 +5,11 @@ metadata:
     openshift.io/generatedby: hurtle.it
   labels:
     app: hurtle-cc-api
-  name: hurtle-cc-api-admin
+  name: hurtle-cc-api
   namespace: demo
 spec:
-  host: hurtle-cc-api-admin.demo.apps.opsv3.cloudcomplab.ch
+  host: hurtle-cc-api.demo.apps.opsv3.cloudcomplab.ch
   to:
     kind: Service
-    name: hurtle-cc-api-admin
+    name: hurtle-cc-api
 status: {}

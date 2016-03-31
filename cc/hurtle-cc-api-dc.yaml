@@ -6,7 +6,7 @@ metadata:
   labels:
     app: hurtle-cc-api
   name: hurtle-cc-api
-  namespace: test
+  namespace: demo
 spec:
   replicas: 1
   selector:
@@ -30,22 +30,22 @@ spec:
         - name: USERNAME
           value: demo
         - name: PASSWORD
-          value: ${PASSWORD}
+          value: LU4JiFJSuL0H3r5bCJ1A3A
         - name: VERSION
-          value: "29"
+          value: "1"
         - name: SECRET
           value: a24b62cef52aef3a
         - name: SELF_REBUILD_URL
-          value: https://opsv3.cloudcomplab.ch:8443/oapi/v1/namespaces/test/buildconfigs/hurtle-cc-api/webhooks/a24b62cef52aef3a/generic
+          value: https://opsv3.cloudcomplab.ch:8443/oapi/v1/namespaces/demo/buildconfigs/hurtle-cc-api/webhooks/a24b62cef52aef3a/generic
         - name: GLUE_NAME
           value: OpenShift3
         - name: DOMAIN
           value: .apps.opsv3.cloudcomplab.ch
         - name: NAMESPACE
-          value: test
+          value: demo
         - name: URI
           value: https://opsv3.cloudcomplab.ch:8443
-        image: 172.30.33.47:5000/test/hurtle-cc-api@sha256:3297fdb425c973f023c891519358afa99065819d196a70ebbd5264ac2faf58c9
+        image: 172.30.172.8:5000/demo/hurtle-cc-api@sha256:3297fdb425c973f023c891519358afa99065819d196a70ebbd5264ac2faf58c9
         imagePullPolicy: Always
         name: hurtle-cc-api
         ports:

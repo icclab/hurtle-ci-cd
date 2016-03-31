@@ -6,7 +6,7 @@ metadata:
   labels:
     app: hurtle-cc-api
   name: hurtle-cc-api
-  namespace: test
+  namespace: demo
 spec:
   ports:
   - name: admin-api
