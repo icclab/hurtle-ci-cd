@@ -6,7 +6,7 @@ metadata:
   labels:
     app: sample-so
   name: sample-so
-  namespace: test
+  namespace: demo
 spec:
   output:
     to:

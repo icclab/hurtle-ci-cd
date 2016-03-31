@@ -7,7 +7,7 @@ metadata:
   labels:
     app: sample-sm-admin
   name: sample-sm-admin
-  namespace: test
+  namespace: demo
 spec:
   ports:
   - name: admin-api

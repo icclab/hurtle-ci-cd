@@ -6,7 +6,7 @@ metadata:
   labels:
     app: sample-so
   name: sample-so
-  namespace: test
+  namespace: demo
 spec: {}
 status:
-  dockerImageRepository: 172.30.33.47:5000/test/sample-so
+  dockerImageRepository: 172.30.172.8:5000/demo/sample-so

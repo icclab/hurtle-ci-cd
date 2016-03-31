@@ -6,7 +6,7 @@ metadata:
   labels:
     app: sample-sm-mongo
   name: sample-sm-mongo
-  namespace: test
+  namespace: demo
 spec:
   replicas: 1
   selector:

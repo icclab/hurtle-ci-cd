@@ -6,7 +6,7 @@ metadata:
   labels:
     app: sample-sm
   name: sample-sm
-  namespace: test
+  namespace: demo
 spec:
   replicas: 1
   selector:
@@ -29,7 +29,7 @@ spec:
       containers:
       - env:
         - name: BUNDLE_LOC
-          value: sample-so
+          value: 172.30.172.8:5000/demo/sample-so:latest
         - name: SM_NAME
           value: sample-sm
         - name: SM_CONFIG_PATH
@@ -39,14 +39,14 @@ spec:
         - name: DB_PASSWORD
           value: hurtle
         - name: CC_USER
-          value: test
+          value: demo
         - name: CC_PASSWORD
-          value: ${PASSWORD}
+          value: LU4JiFJSuL0H3r5bCJ1A3A
         - name: CC_URL
-          value: http://hurtle-cc-api.test.apps.opsv3.cloudcomplab.ch/
+          value: http://hurtle-cc-api.demo.apps.opsv3.cloudcomplab.ch/
         - name: CC_ADMIN_URL
-          value: http://hurtle-cc-api-admin.test.apps.opsv3.cloudcomplab.ch/
-        image: 172.30.33.47:5000/test/sample-sm:latest
+          value: http://hurtle-cc-api-admin.demo.apps.opsv3.cloudcomplab.ch/
+        image: 172.30.172.8:5000/demo/sample-sm:latest
         imagePullPolicy: Always
         name: sample-sm
         ports:

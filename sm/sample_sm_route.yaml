@@ -6,9 +6,9 @@ metadata:
   labels:
     app: sample-sm
   name: sample-sm
-  namespace: test
+  namespace: demo
 spec:
-  host: sample-sm.test.apps.opsv3.cloudcomplab.ch
+  host: sample-sm.demo.apps.opsv3.cloudcomplab.ch
   to:
     kind: Service
     name: sample-sm
